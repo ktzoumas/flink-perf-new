@@ -80,7 +80,8 @@ def copy_log_master(dest_path):
     log_file = "flink-*-jobmanager-*"
     for extension in ["log", "out"]:
         copy_log("%s/%s.%s" % (path, log_file, extension),
-                 "%s/flink_jobmanager.%s" % (dest_path, extension)
+                 # flink bug FLINK-1361: either jobmanager or jobManager
+                 "%s/flink_job[Mm]anager.%s" % (dest_path, extension)
         )
 
 @task
